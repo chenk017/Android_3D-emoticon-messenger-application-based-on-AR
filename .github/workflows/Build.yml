@@ -23,9 +23,12 @@ jobs:
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          packages: ''
 
-      - name: Install Android SDK packages
+      - name: Install Android SDK
         run: |
+          yes | sdkmanager --licenses
           sdkmanager "platform-tools"
           sdkmanager "platforms;android-31"
           sdkmanager "build-tools;31.0.0"
@@ -40,5 +43,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: UnityPreview-debug
-          path: |
-            **/build/outputs/apk/**/*.apk
+          path: '**/build/outputs/apk/**/*.apk'
